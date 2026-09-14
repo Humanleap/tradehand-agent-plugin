@@ -1,0 +1,12 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "tradehand",
+  "version": "0.1.0",
+  "description": "Browse and book local tradespeople. UK only.",
+  "author": {
+    "name": "Outside HQ LTD"
+  },
+  "homepage": "https://tradehand.com",
+  "repository": "https://github.com/Humanleap/tradehand-agent-plugin",
+  "license": "MIT"
+}
