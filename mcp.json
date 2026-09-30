@@ -3,7 +3,7 @@
   "mcpServers": {
     "tradehand": {
       "type": "streamable-http",
-      "url": "https://tradehand.com/api/mcp"
+      "url": "https://tradehand.com/api/mcp/chatgpt"
     }
   }
 }
