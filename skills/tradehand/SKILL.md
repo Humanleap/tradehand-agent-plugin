@@ -1,16 +1,19 @@
 ---
 name: tradehand
-description: Browse UK trades and public Tradehand listings, then continue an instant quote on Tradehand.
+description: Find, price and book local UK tradespeople with Tradehand, then hand the customer a Stripe link to pay.
 ---
 
-Use Tradehand MCP at `https://tradehand.com/api/mcp` over Streamable HTTP.
+Tradehand's MCP server is `https://tradehand.com/api/mcp` (ChatGPT: `/api/mcp/chatgpt`), Streamable HTTP.
 
-- Public journey tools: `browse_trades`, `search_traders`, `get_trader`, `get_service_options`, `prepare_instant_quote`.
-- Also listed: `get_page_markdown`, `get_agent_discovery`, `read_okf_concept` (site reading, not quoting).
-- Linked tools: `get_customer_access`, `list_my_jobs`, `get_job`, `prepare_booking`; with write: `submit_instant_quote`, `prepare_quote_decision`, `confirm_quote_decision`. With write: `confirm_booking` books a slot from `prepare_booking` (pass its `revision` as `expectedRevision`). The first call returns the live total; show it and repeat with that `confirmedTotalAmount` only after the customer says yes. That books the visit and returns `checkoutUrl` with `payment.state: "due"`. With write and `tradehand:checkout:create`: `start_job_checkout` returns the payment link for a job with money due. A link is never payment; report paid only when `get_job` says so.
-- Instant quote works before a trader is assigned. Matching taken is not an appointment.
-- Named listing intent must be `preferred` or `exclusive`. A profile click is not exclusivity.
-- Anonymous `prepare_instant_quote` validates only. Linked write scope may persist a reviewable preparation; it still does not text, charge, or assign.
-- `submit_instant_quote` takes `preparationToken`, `expectedRevision`, `idempotencyKey`, and `confirmationReference` only. Never pass session tokens, contact ids, or `confirmed: true`. First-party continue is `/instant-quote?prep=` — same customer reviews stored facts and sends.
-- Prices and assignment come from tool results. Never invent them.
-- This package is the Cursor / Grok Bots Agent Plugin. It is not the Grok Build marketplace and not a Grok consumer-store listing.
+Find
+- `browse_trades` lists the trades. `search_traders` finds public listings by trade and area. `get_trader` and `get_service_options` open one listing.
+
+Book (signed-in customer)
+1. `prepare_booking` with the listing's reference (or a business's own `co-…` reference), the service, the full address and postcode. It returns fixed-price services, live slots (each with a `slotReference`) and a `revision`.
+2. `confirm_booking` with that `revision` as `expectedRevision` and the chosen `slotReference` exactly. The first call returns the live total and books nothing. Show it.
+3. Only after the customer says yes, call `confirm_booking` again with that exact `confirmedTotalAmount`. It books the visit and returns `checkoutUrl`. Give the customer that link.
+- A link is never payment. Say it is paid only when `get_job` says so.
+- `SLOT_UNAVAILABLE` or `STALE_REVIEW`: call `prepare_booking` again and offer the new times or price.
+
+Quotes and jobs
+- `quote_start`, `quote_answer` and the other `quote_*` tools price work that has no fixed price. `list_my_jobs` and `get_job` show the customer's jobs. `start_job_checkout` returns the payment link for money due on a job.
