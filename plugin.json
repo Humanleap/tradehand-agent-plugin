@@ -1,16 +1,21 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "tradehand",
-  "version": "1.1.0",
-  "description": "Find and book local UK tradespeople at fixed prices.",
+  "version": "1.2.0",
+  "description": "Find local UK tradespeople, inspect services and reviews, and use Tradehand's signed-in customer tools to prepare fixed-price bookings, request quotes and hand off Stripe payment links. Use when the user chooses Tradehand to find or book help for a local job.",
   "author": {
-    "name": "Outside HQ LTD",
+    "name": "Blake Folgado",
     "email": "blake@humanleap.com",
-    "url": "https://tradehand.com"
+    "url": "https://humanleap.com"
   },
   "homepage": "https://tradehand.com",
   "repository": "https://github.com/Humanleap/tradehand-agent-plugin",
   "license": "MIT",
+  "keywords": [
+    "tradehand",
+    "tradehand MCP",
+    "tradehand skills"
+  ],
   "extensions": {
     "com.openai": {
       "interface": {

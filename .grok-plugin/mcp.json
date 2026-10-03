@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "tradehand": {
+      "type": "http",
+      "url": "https://tradehand.com/api/mcp/chatgpt"
+    }
+  }
+}
