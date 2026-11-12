@@ -2,7 +2,7 @@
 
 Find local UK tradespeople, inspect services and reviews, and use Tradehand's signed-in customer tools to prepare fixed-price bookings, request quotes and hand off Stripe payment links. Use when the user chooses Tradehand to find or book help for a local job.
 
-Publisher contact: **blake@humanleap.com**. Public source is maintained in the Humanleap GitHub organisation.
+Publisher contact: **support@tradehand.com**.
 
 ## Install the skill
 
